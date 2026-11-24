@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cổng Dịch Thuật & Bản Địa Hoá - Noob Launcher</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='20' font-size='20'>🌍</text></svg>">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/i18n/i18n.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-wrap">
+      <a href="/" class="brand">
+        <span class="logo-badge">NL</span>
+        <span class="brand-text">Noob Launcher</span>
+      </a>
+      <nav class="nav">
+        <a href="/">Trang chủ</a>
+        <a href="/download">Tải xuống</a>
+        <a href="/i18n" class="active">Bản địa hóa (Dịch)</a>
+        <a href="https://github.com/abcsnoob/nooblauncher-web" target="_blank" rel="noreferrer" class="github-link">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="i18n-layout">
+      <!-- Cột trái: Danh sách ngôn ngữ & Cài đặt PAT GitHub -->
+      <aside class="i18n-sidebar">
+        <div class="sidebar-title">
+          <span>Ngôn ngữ</span>
+          <button id="btn-add-lang" class="btn btn-secondary btn-sm" title="Thêm ngôn ngữ mới">+ Thêm</button>
+        </div>
+
+        <div id="lang-list" class="lang-list">
+          <!-- Render danh sách ngôn ngữ -->
+          <div class="muted">Đang tải danh sách ngôn ngữ…</div>
+        </div>
+
+        <div class="repo-info-box">
+          <small class="muted">
+            🛡️ <strong>Bảo mật:</strong> Lưu an toàn qua Cloudflare Pages Function.<br>
+            Không cần nhập Token tại đây (Token được bảo vệ ở server).<br>
+            Tự động kích hoạt cập nhật trên Pages khi lưu.
+          </small>
+        </div>
+      </aside>
+
+      <!-- Cột phải: Khu vực biên dịch -->
+      <section class="i18n-editor">
+        <div class="editor-header">
+          <div class="editor-title">
+            <h2 id="current-lang-name">Đang tải…</h2>
+            <div class="muted" id="current-lang-stats">0/0 chuỗi (0%)</div>
+          </div>
+
+          <div class="editor-controls">
+            <div class="filter-tabs">
+              <button class="filter-btn active" data-filter="all">Tất cả</button>
+              <button class="filter-btn" data-filter="missing">Chưa dịch</button>
+              <button class="filter-btn" data-filter="done">Đã dịch</button>
+            </div>
+
+            <button id="btn-export-json" class="btn btn-secondary btn-sm" title="Tải file JSON về máy">
+              📥 Xuất file
+            </button>
+            <button id="btn-save-github" class="btn btn-primary btn-sm" title="Commit trực tiếp lên GitHub">
+              🚀 Lưu lên GitHub
+            </button>
+          </div>
+        </div>
+
+        <div class="search-bar">
+          <input type="text" id="search-key" class="input-text" placeholder="Tìm theo mã key hoặc nội dung chuỗi gốc...">
+        </div>
+
+        <div id="strings-list" class="strings-list">
+          <div class="muted py-5 text-center">Đang tải dữ liệu chuỗi…</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal thêm ngôn ngữ mới -->
+  <div class="modal-overlay" id="modal-new-lang">
+    <div class="modal">
+      <h3>Thêm ngôn ngữ dịch mới</h3>
+      <div class="form-group">
+        <label for="new-lang-code">Mã ngôn ngữ (ISO 639-1 / BCP 47):</label>
+        <input type="text" id="new-lang-code" class="input-text" placeholder="Ví dụ: ja, ko, zh-CN, fr, ru, es...">
+      </div>
+      <div class="form-group">
+        <label for="new-lang-name">Tên hiển thị:</label>
+        <input type="text" id="new-lang-name" class="input-text" placeholder="Ví dụ: 日本語, 한국어, Français...">
+      </div>
+      <div class="form-group">
+        <label for="new-lang-base">Dựa theo bản gốc:</label>
+        <select id="new-lang-base" class="input-text">
+          <option value="vi">Tiếng Việt (vi.json)</option>
+          <option value="en">English (en.json)</option>
+        </select>
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:20px;">
+        <button id="modal-cancel" class="btn btn-secondary btn-sm">Huỷ</button>
+        <button id="modal-confirm" class="btn btn-primary btn-sm">Tạo ngôn ngữ</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast-box"></div>
+
+  <script src="/i18n/app.js"></script>
+</body>
+</html>

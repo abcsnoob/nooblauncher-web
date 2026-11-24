@@ -1,0 +1,20 @@
+{
+  "totalKeys": 429,
+  "updatedAt": "2026-11-24T08:30:20.786Z",
+  "languages": [
+    {
+      "code": "en",
+      "name": "English",
+      "translated": 429,
+      "total": 429,
+      "progress": 100
+    },
+    {
+      "code": "vi",
+      "name": "Tiếng Việt",
+      "translated": 429,
+      "total": 429,
+      "progress": 100
+    }
+  ]
+}
